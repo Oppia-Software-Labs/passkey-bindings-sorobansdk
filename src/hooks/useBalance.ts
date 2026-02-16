@@ -24,6 +24,9 @@ export function useBalance(
     }
 
     const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL;
+    const networkPassphrase =
+      process.env.NEXT_PUBLIC_NETWORK_PASSPHRASE ?? "";
+
     if (!rpcUrl) {
       setError("RPC URL not configured");
       setIsLoading(false);
@@ -34,7 +37,12 @@ export function useBalance(
     setError(null);
 
     try {
-      const result = await getTokenBalance(rpcUrl, tokenContract, contractId);
+      const result = await getTokenBalance(
+        rpcUrl,
+        tokenContract,
+        contractId,
+        networkPassphrase
+      );
       setBalance(result);
     } catch (err) {
       setError(
