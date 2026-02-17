@@ -148,11 +148,11 @@ export default function ContractPage() {
     }
     setInitLoading(true);
     try {
+      const kit = getKit();
       const assembled = await vault.initialize(
         { token: initToken.trim() },
-        { publicKey: wallet.contractId }
+        { publicKey: kit.deployerPublicKey }
       );
-      const kit = getKit();
       const sent = await kit.signAndSubmit(assembled);
       if (sent.success && sent.hash) {
         setInitResult({ txHash: sent.hash });
@@ -189,11 +189,11 @@ export default function ContractPage() {
     }
     setDepositLoading(true);
     try {
+      const kit = getKit();
       const assembled = await vault.deposit(
         { user, amount },
-        { publicKey: wallet.contractId }
+        { publicKey: kit.deployerPublicKey }
       );
-      const kit = getKit();
       const sent = await kit.signAndSubmit(assembled);
       if (sent.success && sent.hash) {
         setDepositResult({ txHash: sent.hash });
@@ -230,11 +230,11 @@ export default function ContractPage() {
     }
     setWithdrawLoading(true);
     try {
+      const kit = getKit();
       const assembled = await vault.withdraw(
         { user, amount },
-        { publicKey: wallet.contractId }
+        { publicKey: kit.deployerPublicKey }
       );
-      const kit = getKit();
       const sent = await kit.signAndSubmit(assembled);
       if (sent.success && sent.hash) {
         setWithdrawResult({ txHash: sent.hash });
@@ -326,7 +326,7 @@ export default function ContractPage() {
                 label="Token contract (C...)"
                 value={initToken}
                 onChange={setInitToken}
-                placeholder="CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+                placeholder=""
                 disabled={initLoading}
               />
               <button
@@ -359,7 +359,7 @@ export default function ContractPage() {
                 label="User address (optional, defaults to connected wallet)"
                 value={depositUser}
                 onChange={setDepositUser}
-                placeholder={wallet?.contractId ?? "C..."}
+                placeholder=""
                 disabled={depositLoading}
               />
               <Field
@@ -367,7 +367,7 @@ export default function ContractPage() {
                 label="Amount"
                 value={depositAmount}
                 onChange={setDepositAmount}
-                placeholder="10"
+                placeholder=""
                 disabled={depositLoading}
               />
               <button
@@ -400,7 +400,7 @@ export default function ContractPage() {
                 label="User address (optional)"
                 value={withdrawUser}
                 onChange={setWithdrawUser}
-                placeholder={wallet?.contractId ?? "C..."}
+                placeholder=""
                 disabled={withdrawLoading}
               />
               <Field
@@ -408,7 +408,7 @@ export default function ContractPage() {
                 label="Amount"
                 value={withdrawAmount}
                 onChange={setWithdrawAmount}
-                placeholder="5"
+                placeholder=""
                 disabled={withdrawLoading}
               />
               <button
@@ -441,7 +441,7 @@ export default function ContractPage() {
                 label="User address"
                 value={balanceUser}
                 onChange={setBalanceUser}
-                placeholder="C... or G..."
+                placeholder=""
                 disabled={balanceLoading}
               />
               <button
