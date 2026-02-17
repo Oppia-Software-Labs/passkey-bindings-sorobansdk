@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { WalletConnection } from "@/components/WalletConnection";
+import MadeByOppia from "@/components/MadeByOppia";
 
 export default function Home() {
   return (
@@ -38,6 +39,10 @@ export default function Home() {
           >
             Vault contract
           </Link>
+        </div>
+
+        <div className="mt-8">
+          <MadeByOppia />
         </div>
       </main>
     </div>
