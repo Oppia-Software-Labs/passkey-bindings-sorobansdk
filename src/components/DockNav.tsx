@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Dock from "./Dock";
-import { Home, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
+import { Home, ArrowDownToLine, ArrowUpFromLine, FileCode } from "lucide-react";
 
 const DOCK_ITEMS = [
   {
@@ -19,6 +19,11 @@ const DOCK_ITEMS = [
     label: "Send",
     path: "/send",
     icon: <ArrowUpFromLine className="h-6 w-6 text-white" />,
+  },
+  {
+    label: "Contract",
+    path: "/contract",
+    icon: <FileCode className="h-6 w-6 text-white" />,
   },
 ];
 
